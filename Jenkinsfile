@@ -20,6 +20,7 @@ pipeline {
                     snapshotRepo: 'qt-libs-snapshot-local'
                 )        
             }   
+     }
         stage ('Exec Maven') {
             steps {
                 rtMavenRun (
