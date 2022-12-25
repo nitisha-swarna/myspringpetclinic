@@ -15,8 +15,8 @@ pipeline {
                 rtMavenDeployer (
                     id: "MAVEN_DEPLOYER",
                     serverId: "JFROG_OCT22",
-                    releaseRepo: 'qt-libs-release-local',
-                    snapshotRepo: 'qt-libs-snapshot-local'
+                    releaseRepo: 'default-libs-release-local',
+                    snapshotRepo: 'default-libs-snapshot-local'
                 )
             }
         }
