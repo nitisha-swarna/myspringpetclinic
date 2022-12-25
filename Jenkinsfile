@@ -3,30 +3,23 @@ pipeline {
     
     triggers {
         
-        pollSCM('* * * * *')
+        corn('* 18 * * 1-5')
     }
     stages {
         stage('vcs') {
             steps {
-                git branch: "dev", url: 'https://github.com/nitisha-swarna/myspringpetclinic.git'
-            }
-            
+                git branch: "qa", url: 'https://github.com/nitisha-swarna/myspringpetclinic.git'
+            }   
         }
-
      stage ('Artifactory configuration') {
             steps {
-                
-
                 rtMavenDeployer (
                     id: "MAVEN_DEPLOYER",
                     serverId: "JFROG_OCT22",
                     releaseRepo: 'qt-libs-release-local',
                     snapshotRepo: 'qt-libs-snapshot-local'
-                )
-
-               
+                )        
             }   
-
         stage ('Exec Maven') {
             steps {
                 rtMavenRun (
@@ -36,8 +29,6 @@ pipeline {
                     deployerId: "MAVEN_DEPLOYER"
                 )
             }
-        }
-        
+        }   
     }
-
 }
